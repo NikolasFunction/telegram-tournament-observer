@@ -6,7 +6,7 @@ import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTabl
 
 public interface ITournamentTableEntryFactory {
 
-    public ITournamentTableEntry createTournamentTableEntry(Date time,
+    public ITournamentTableEntry createTournamentTableEntry(long tournamentId, Date time,
             String url, String organizer, int freePlaces, int participants,
             int queueSize, String region, String openFor, String ageGroup,
             String pdfUrl);

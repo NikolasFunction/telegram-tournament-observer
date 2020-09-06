@@ -4,21 +4,22 @@ import java.util.Date;
 
 public class TournamentTableEntry implements ITournamentTableEntry {
     
-    private Date time;
-    private String url;
-    private String organizer;
-    private int freePlaces;
-    private int participants;
-    private int queueSize;
-    private String region;
-    private String openFor;
-    private String ageGroup;    
-    private String pdfUrl;
+    private final long tournamentId;
+    private final Date time;
+    private final String url;
+    private final String organizer;
+    private final int freePlaces;
+    private final int participants;
+    private final int queueSize;
+    private final String region;
+    private final String openFor;
+    private final String ageGroup;    
+    private final String pdfUrl;
     
-    public TournamentTableEntry(Date time, String url, String organizer,
+    public TournamentTableEntry(long tournamentId, Date time, String url, String organizer,
             int freePlaces, int participants, int queueSize, String region,
             String openFor, String ageGroup, String pdfUrl) {
-        super();
+        this.tournamentId = tournamentId;
         this.time = time;
         this.url = url;
         this.organizer = organizer;
@@ -29,6 +30,11 @@ public class TournamentTableEntry implements ITournamentTableEntry {
         this.openFor = openFor;
         this.ageGroup = ageGroup;
         this.pdfUrl = pdfUrl;
+    }
+    
+    @Override
+    public long getTournamentId() {
+        return tournamentId;
     }
 
     @Override
