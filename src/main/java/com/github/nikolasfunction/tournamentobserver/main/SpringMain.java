@@ -1,16 +1,13 @@
 package com.github.nikolasfunction.tournamentobserver.main;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Year;
 
-import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.github.nikolasfunction.tournamentobserver.scanner.ITableInitializer;
 import com.github.nikolasfunction.tournamentobserver.web.IHtmlRequester;
-import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTable;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTableUrlGenerator;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.parse.ITournamentTableParser;
 
@@ -27,27 +24,33 @@ public class SpringMain implements CommandLineRunner {
     
     private final ITournamentTableUrlGenerator tournamentTableUrlGenerator;
     
+    private final ITableInitializer tableInitializer;
+    
     @Autowired
     public SpringMain(ITournamentTableParser tournamentTableParser,
             IHtmlRequester htmlRequester,
-            ITournamentTableUrlGenerator tournamentTableUrlGenerator) {
+            ITournamentTableUrlGenerator tournamentTableUrlGenerator,
+            ITableInitializer tableInitializer) {
         this.tournamentTableParser = tournamentTableParser;
         this.htmlRequester = htmlRequester;
         this.tournamentTableUrlGenerator = tournamentTableUrlGenerator;
+        this.tableInitializer = tableInitializer;
     }
 
 
     @Override
     public void run(String... args) throws Exception {
         
-      LocalDate date = LocalDate.now();        
-      String url = tournamentTableUrlGenerator.generateTournamentTableUrl(date.getMonth(), Year.now());
-      
-      Document html = htmlRequester.requestHtml(url);
-      ITournamentTable table = tournamentTableParser.parseTournamentTable(html);
-      
-      System.out.println(String.format("Found %d entries in %s %d:", table.getTournamentTableEntries().size(), table.getMonth().toString(), table.getYear().getValue()));
-      table.getTournamentTableEntries().stream().forEach(entry -> System.out.println(String.format("%s um %s in %s", DATE_FORMAT.format(entry.getTime()), TIME_FORMAT.format(entry.getTime()), entry.getOrganizer())));
+        tableInitializer.initializeTable();
+        
+//      LocalDate date = LocalDate.now();        
+//      String url = tournamentTableUrlGenerator.generateTournamentTableUrl(date.getMonth(), Year.now());
+//      
+//      Document html = htmlRequester.requestHtml(url);
+//      ITournamentTable table = tournamentTableParser.parseTournamentTable(html);
+//      
+//      System.out.println(String.format("Found %d entries in %s %d:", table.getTournamentTableEntries().size(), table.getMonth().toString(), table.getYear().getValue()));
+//      table.getTournamentTableEntries().stream().forEach(entry -> System.out.println(String.format("%s um %s in %s", DATE_FORMAT.format(entry.getTime()), TIME_FORMAT.format(entry.getTime()), entry.getOrganizer())));
       
     }
     

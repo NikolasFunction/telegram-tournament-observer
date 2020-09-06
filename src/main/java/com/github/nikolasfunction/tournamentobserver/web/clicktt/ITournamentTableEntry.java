@@ -4,6 +4,8 @@ import java.util.Date;
 
 public interface ITournamentTableEntry {
     
+    public long getTournamentId();
+    
     public Date getTime();
     
     public String getUrl();

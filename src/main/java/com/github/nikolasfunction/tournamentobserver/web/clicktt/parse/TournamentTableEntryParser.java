@@ -77,7 +77,16 @@ public class TournamentTableEntryParser implements ITournamentTableEntryParser {
                 .append(element.child(POSITION_PDF).select("a[href]").attr("href"));
         String pdfUrl = pdfUrlString.toString().replace("amp;", "");
         
-        return tournamentTableEntryFactory.createTournamentTableEntry(time, url, organizer, freePlaces, participants, queueSize, region, openFor, ageGroup, pdfUrl);
+        String tournamentIdString = pdfUrl.substring(pdfUrl.indexOf("tournament=") + "tournament=".length());
+        long tournamentId;
+        try {
+            tournamentId = Long.parseLong(tournamentIdString);
+        }
+        catch(NumberFormatException e) {
+            throw new com.github.nikolasfunction.tournamentobserver.exception.ParseException(e);
+        }
+        
+        return tournamentTableEntryFactory.createTournamentTableEntry(tournamentId, time, url, organizer, freePlaces, participants, queueSize, region, openFor, ageGroup, pdfUrl);
         
     }
     
