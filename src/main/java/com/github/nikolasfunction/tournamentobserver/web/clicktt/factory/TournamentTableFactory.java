@@ -4,10 +4,13 @@ import java.time.Month;
 import java.time.Year;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTable;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTableEntry;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.TournamentTable;
 
+@Component
 public class TournamentTableFactory implements ITournamentTableFactory {
 
     @Override

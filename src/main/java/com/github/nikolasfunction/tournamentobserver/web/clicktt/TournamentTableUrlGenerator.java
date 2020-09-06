@@ -3,6 +3,9 @@ package com.github.nikolasfunction.tournamentobserver.web.clicktt;
 import java.time.Month;
 import java.time.Year;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TournamentTableUrlGenerator implements ITournamentTableUrlGenerator {
     
     @Override
