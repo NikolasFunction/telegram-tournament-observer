@@ -13,17 +13,28 @@ import java.util.Locale;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTable;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTableEntry;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.factory.ITournamentTableFactory;
-import com.github.nikolasfunction.tournamentobserver.web.clicktt.factory.TournamentTableFactory;
 
+@Component
 public class TournamentTableParser implements ITournamentTableParser {
     
-    private final ITournamentTableFactory tournamentTableFactory = new TournamentTableFactory();
+    private final ITournamentTableFactory tournamentTableFactory;
     
-    private final ITournamentTableEntryParser tournamentTableEntryParser = new TournamentTableEntryParser();
+    private final ITournamentTableEntryParser tournamentTableEntryParser;
+    
+    @Autowired
+    public TournamentTableParser(ITournamentTableFactory tournamentTableFactory,
+            ITournamentTableEntryParser tournamentTableEntryParser) {
+        this.tournamentTableFactory = tournamentTableFactory;
+        this.tournamentTableEntryParser = tournamentTableEntryParser;
+    }
+
+
 
     @Override
     public ITournamentTable parseTournamentTable(Document html) throws com.github.nikolasfunction.tournamentobserver.exception.ParseException {

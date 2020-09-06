@@ -2,9 +2,12 @@ package com.github.nikolasfunction.tournamentobserver.web.clicktt.factory;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTableEntry;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.TournamentTableEntry;
 
+@Component
 public class TournamentTableEntryFactory
         implements ITournamentTableEntryFactory {
 

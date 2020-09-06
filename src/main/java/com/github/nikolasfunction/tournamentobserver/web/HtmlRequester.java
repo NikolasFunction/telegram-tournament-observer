@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.stereotype.Component;
 
 import com.github.nikolasfunction.tournamentobserver.exception.ConnectionException;
 
+@Component
 public class HtmlRequester implements IHtmlRequester {
 
     public Document requestHtml(String url) throws ConnectionException {

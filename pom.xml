@@ -1,25 +1,61 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.NikolasFunction</groupId>
-    <artifactId>telegram-tournament-observer</artifactId>
-    <version>0.0.1</version>
-	
-    <description>A telegram bot that will notify you about new or updated table tennis tournaments via Telegram</description>
-	
-    <developers>
-        <developer>
-            <name>Nikolas Paripovic</name>
-            <email>nikolas.paripovic@gmail.com</email>	
-        </developer>
-    </developers>
-    
-    <dependencies>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.13.1</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.NikolasFunction</groupId>
+	<artifactId>telegram-tournament-observer</artifactId>
+	<version>0.0.1</version>
+
+	<description>A telegram bot that will notify you about new or updated table tennis tournaments via Telegram</description>
+
+	<developers>
+		<developer>
+			<name>Nikolas Paripovic</name>
+			<email>nikolas.paripovic@gmail.com</email>
+		</developer>
+	</developers>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.3.RELEASE</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-    </dependencies>
-    
+		
+		<!-- Database -->
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>		
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

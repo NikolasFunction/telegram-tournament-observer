@@ -6,11 +6,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTableEntry;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.factory.ITournamentTableEntryFactory;
-import com.github.nikolasfunction.tournamentobserver.web.clicktt.factory.TournamentTableEntryFactory;
 
+@Component
 public class TournamentTableEntryParser implements ITournamentTableEntryParser {
     
     private static final String HOST = "https://bttv.click-tt.de";
@@ -25,8 +27,14 @@ public class TournamentTableEntryParser implements ITournamentTableEntryParser {
     private static final int POSITION_AGEGROUP = 6;
     private static final int POSITION_PDF = 7;
     
-    private final ITournamentTableEntryFactory tournamentTableEntryFactory = new TournamentTableEntryFactory();
+    private final ITournamentTableEntryFactory tournamentTableEntryFactory;
     
+    @Autowired
+    public TournamentTableEntryParser(
+            ITournamentTableEntryFactory tournamentTableEntryFactory) {
+        this.tournamentTableEntryFactory = tournamentTableEntryFactory;
+    }
+
     @Override
     public ITournamentTableEntry parseTournamentTableEntry(Element element) throws com.github.nikolasfunction.tournamentobserver.exception.ParseException {
         
