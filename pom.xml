@@ -43,8 +43,9 @@
 
 		<dependency>
 			<groupId>org.telegram</groupId>
-			<artifactId>telegrambots-abilities</artifactId>
+			<artifactId>telegrambots-meta</artifactId>
 			<version>4.9.1</version>
+
 		</dependency>
 
 		<!-- Database -->

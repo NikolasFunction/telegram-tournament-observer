@@ -18,7 +18,7 @@ public class SpringMain implements CommandLineRunner {
     
     @Override
     public void run(String... args) throws Exception {
-        tableInitializer.initializeTable();
+//        tableInitializer.initializeTable();
     }
     
     

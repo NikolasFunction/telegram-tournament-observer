@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * Tags a method in order to be called when receiving a command.
- * Valid return values: void, subytep of BaseRequest
+ * Valid return values: void, subtype of BaseRequest
  * Valid parameters: String, Integer
  * @author Nikolas Paripovic
  *
@@ -20,5 +20,6 @@ public @interface BotCommand {
     
     String value();
     String description();
+    boolean hidden() default false;
 
 }
