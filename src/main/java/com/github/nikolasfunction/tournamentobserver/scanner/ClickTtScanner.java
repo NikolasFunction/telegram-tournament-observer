@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.github.nikolasfunction.tournamentobserver.database.api.ITournament;
 import com.github.nikolasfunction.tournamentobserver.exception.ConnectionException;
 import com.github.nikolasfunction.tournamentobserver.exception.ParseException;
+import com.github.nikolasfunction.tournamentobserver.model.Tournament;
 import com.github.nikolasfunction.tournamentobserver.web.IHtmlRequester;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTable;
 import com.github.nikolasfunction.tournamentobserver.web.clicktt.ITournamentTableUrlGenerator;
@@ -73,7 +74,15 @@ public class ClickTtScanner implements IClickTtScanner {
                 e.printStackTrace();
             }
             
-            tournaments.addAll(table.getTournamentTableEntries().stream().map(tableEntry -> new TournamentAdapter(tableEntry)).collect(Collectors.toList()));
+            tournaments.addAll(table.getTournamentTableEntries().stream()
+                    .map(tableEntry -> new Tournament(
+                            tableEntry.getTournamentId(),
+                            tableEntry.getTime(),
+                            tableEntry.getUrl(),
+                            tableEntry.getParticipants(),
+                            tableEntry.getFreePlaces()))
+                    .collect(Collectors.toList()));
+                    
             
         }
         return tournaments;

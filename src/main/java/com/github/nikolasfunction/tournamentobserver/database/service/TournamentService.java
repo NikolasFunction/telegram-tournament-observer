@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.nikolasfunction.tournamentobserver.database.adapter.TournamentAdapter;
 import com.github.nikolasfunction.tournamentobserver.database.api.ITournament;
-import com.github.nikolasfunction.tournamentobserver.database.api.ITournamentService;
+import com.github.nikolasfunction.tournamentobserver.database.api.service.ITournamentService;
 import com.github.nikolasfunction.tournamentobserver.database.entity.Tournament;
 import com.github.nikolasfunction.tournamentobserver.database.repository.ITournamentRepository;
 
@@ -32,7 +33,7 @@ public class TournamentService implements ITournamentService {
         tournamentEntity.setFreePlaces(tournament.getFreePlaces());
         tournamentEntity.setParticipants(tournament.getParticipants());
         tournamentEntity.setTime(tournament.getTime());
-        tournamentEntity.setTournamentId(tournament.getTournamentId());
+        tournamentEntity.setId(tournament.getId());
         tournamentEntity.setUrl(tournament.getUrl());
         
         tournamentRepository.saveAndFlush(tournamentEntity);

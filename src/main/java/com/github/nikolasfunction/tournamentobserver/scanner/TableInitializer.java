@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.nikolasfunction.tournamentobserver.database.api.ITournament;
-import com.github.nikolasfunction.tournamentobserver.database.api.ITournamentService;
+import com.github.nikolasfunction.tournamentobserver.database.api.service.ITournamentService;
 
 @Component
 public class TableInitializer implements ITableInitializer {

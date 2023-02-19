@@ -1,4 +1,4 @@
-package com.github.nikolasfunction.tournamentobserver.database.service;
+package com.github.nikolasfunction.tournamentobserver.database.adapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,13 +16,8 @@ public class UserAdapter implements IUser {
     }
 
     @Override
-    public long getUserId() {
-        return user.getUserId();
-    }
-
-    @Override
-    public long getChatId() {
-        return user.getChatId();
+    public int getId() {
+        return user.getId();
     }
 
     @Override
@@ -31,5 +26,11 @@ public class UserAdapter implements IUser {
                 .map(tournament -> new TournamentAdapter(tournament))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public String getName() {
+        return user.getName();
+    }
+
 
 }

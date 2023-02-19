@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.nikolasfunction.tournamentobserver.database.adapter.UserAdapter;
 import com.github.nikolasfunction.tournamentobserver.database.api.IUser;
-import com.github.nikolasfunction.tournamentobserver.database.api.IUserService;
+import com.github.nikolasfunction.tournamentobserver.database.api.service.IUserService;
 import com.github.nikolasfunction.tournamentobserver.database.entity.Tournament;
 import com.github.nikolasfunction.tournamentobserver.database.entity.User;
 import com.github.nikolasfunction.tournamentobserver.database.repository.IUserRepository;
@@ -29,10 +30,10 @@ public class UserService implements IUserService {
     public void createUser(IUser user) {
         
         User userEntity = new User();
-        userEntity.setChatId(user.getChatId());
-        userEntity.setUserId(user.getUserId());
+        userEntity.setId(user.getId());
+        userEntity.setName(user.getName());
         userEntity.setObservedTournaments(user.getObservedTournaments().stream()
-                .map(tournament -> new Tournament(tournament.getTournamentId(), tournament.getTime(), tournament.getUrl(), tournament.getParticipants(), tournament.getFreePlaces()))
+                .map(tournament -> new Tournament(tournament.getId(), tournament.getTime(), tournament.getUrl(), tournament.getParticipants(), tournament.getFreePlaces()))
                 .collect(Collectors.toSet()));
         
         userRepository.saveAndFlush(userEntity);
@@ -50,7 +51,7 @@ public class UserService implements IUserService {
 
 
     @Override
-    public Optional<IUser> getUser(long userId) {
+    public Optional<IUser> getUser(int userId) {
         return userRepository.findById(userId).map(value -> new UserAdapter(value));
     }
 

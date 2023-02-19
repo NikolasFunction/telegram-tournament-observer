@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface IUser {
     
-    public long getUserId();
+    public int getId();
     
-    public long getChatId();
+    public String getName();
     
     public List<ITournament> getObservedTournaments();
     

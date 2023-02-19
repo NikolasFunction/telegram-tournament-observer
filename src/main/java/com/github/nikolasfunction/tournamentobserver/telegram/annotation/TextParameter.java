@@ -6,19 +6,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Tags a method in order to be called when receiving a command.
- * Valid return values: void, subtype of BaseRequest
- * @author Nikolas Paripovic
- *
- */
-@Target(ElementType.METHOD)
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface BotCommand {
-    
-    String value();
-    String description();
-    boolean hidden() default false;
+@Parameter({String.class})
+public @interface TextParameter {
 
 }
+

@@ -1,4 +1,4 @@
-package com.github.nikolasfunction.tournamentobserver.database.service;
+package com.github.nikolasfunction.tournamentobserver.database.adapter;
 
 import java.util.Date;
 
@@ -14,8 +14,8 @@ public class TournamentAdapter implements ITournament {
     }
 
     @Override
-    public long getTournamentId() {
-        return tournament.getTournamentId();
+    public long getId() {
+        return tournament.getId();
     }
 
     @Override

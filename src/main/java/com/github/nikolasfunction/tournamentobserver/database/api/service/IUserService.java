@@ -1,8 +1,10 @@
-package com.github.nikolasfunction.tournamentobserver.database.api;
+package com.github.nikolasfunction.tournamentobserver.database.api.service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import com.github.nikolasfunction.tournamentobserver.database.api.IUser;
 
 public interface IUserService {
     
@@ -14,6 +16,6 @@ public interface IUserService {
     
     public int getNumberOfUser();
     
-    public Optional<IUser> getUser(long userId);
+    public Optional<IUser> getUser(int userId);
 
 }

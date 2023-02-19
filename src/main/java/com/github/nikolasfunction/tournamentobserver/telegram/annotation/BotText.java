@@ -6,19 +6,23 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.github.nikolasfunction.tournamentobserver.telegram.state.UserEvent;
+import com.github.nikolasfunction.tournamentobserver.telegram.state.UserState;
+
 /**
  * Tags a method in order to be called when receiving a command.
  * Valid return values: void, subtype of BaseRequest
+ * Valid parameters: String, Integer
  * @author Nikolas Paripovic
  *
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface BotCommand {
+public @interface BotText {
     
-    String value();
-    String description();
-    boolean hidden() default false;
+    UserState state();
+    UserEvent event();
+    String errorMessage() default "";
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.TemporalType;
 public class Tournament {
     
     @Id
-    private long tournamentId;
+    private long id;
     
     @Temporal(TemporalType.DATE)
     private Date time;
@@ -28,7 +28,7 @@ public class Tournament {
     
     public Tournament(long tournamentId, Date time, String url,
             int participants, int freePlaces) {
-        this.tournamentId = tournamentId;
+        this.id = tournamentId;
         this.time = time;
         this.url = url;
         this.participants = participants;
@@ -37,12 +37,12 @@ public class Tournament {
 
 
 
-    public long getTournamentId() {
-        return tournamentId;
+    public long getId() {
+        return id;
     }
 
-    public void setTournamentId(long tournamentId) {
-        this.tournamentId = tournamentId;
+    public void setId(long tournamentId) {
+        this.id = tournamentId;
     }
 
     public Date getTime() {

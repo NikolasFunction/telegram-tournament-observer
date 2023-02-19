@@ -1,8 +1,10 @@
-package com.github.nikolasfunction.tournamentobserver.database.api;
+package com.github.nikolasfunction.tournamentobserver.database.api.service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import com.github.nikolasfunction.tournamentobserver.database.api.ITournament;
 
 public interface ITournamentService {
     

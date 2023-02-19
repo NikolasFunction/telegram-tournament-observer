@@ -3,8 +3,6 @@ package com.github.nikolasfunction.tournamentobserver.database.entity;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -12,10 +10,9 @@ import javax.persistence.OneToMany;
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId;
+    private int id;
     
-    private long chatId;
+    private String name;
     
     @OneToMany
     private Set<Tournament> observedTournaments;
@@ -24,20 +21,20 @@ public class User {
         
     }
 
-    public long getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public long getChatId() {
-        return chatId;
+    public String getName() {
+        return name;
     }
 
-    public void setChatId(long chatId) {
-        this.chatId = chatId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Tournament> getObservedTournaments() {
@@ -47,8 +44,5 @@ public class User {
     public void setObservedTournaments(Set<Tournament> observedTournaments) {
         this.observedTournaments = observedTournaments;
     }
-    
-    
-    
 
 }

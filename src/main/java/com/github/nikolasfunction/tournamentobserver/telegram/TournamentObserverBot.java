@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.service.StateMachineService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
@@ -37,6 +39,8 @@ import com.github.nikolasfunction.tournamentobserver.telegram.annotation.Command
 import com.github.nikolasfunction.tournamentobserver.telegram.annotation.MessageIdParameter;
 import com.github.nikolasfunction.tournamentobserver.telegram.annotation.UserIdParameter;
 import com.github.nikolasfunction.tournamentobserver.telegram.annotation.UserParameter;
+import com.github.nikolasfunction.tournamentobserver.telegram.state.UserEvent;
+import com.github.nikolasfunction.tournamentobserver.telegram.state.UserState;
 
 @Component
 public class TournamentObserverBot extends TelegramLongPollingBot {
@@ -45,6 +49,9 @@ public class TournamentObserverBot extends TelegramLongPollingBot {
 
     @Autowired
     private ApplicationContext applicationContext;
+    
+    @Autowired
+    private StateMachineService<UserState, UserEvent> stateMachineService;
 
     private Map<String, Method> botCommandMethods;
     private Map<Method, Object> botCommandInstances = new HashMap<>();
@@ -95,6 +102,16 @@ public class TournamentObserverBot extends TelegramLongPollingBot {
                         }
                     }
                 }
+            }
+            else {
+                
+//                StateMachine<UserState, UserEvent> stateMachine = stateMachineService.acquireStateMachine(Integer.toString(message.getFrom().getId()));
+//                
+//                if(stateMachine.sendEvent(UserEvent.COMMAND_GREET)) {
+//                        
+//                    
+//                }
+                
             }
         }
     }
@@ -189,7 +206,7 @@ public class TournamentObserverBot extends TelegramLongPollingBot {
                             .map(functionSet -> functionSet.getValue())
                             .findAny();
                     
-                    if(!function.isPresent()) {
+                    if(function.isEmpty()) {
                         ConfigurationException exception = new ConfigurationException(String.format("Parameter annotation of parameter '%s' in Method '%s.%s' not completely implemented.",
                                 parameter.getName(),
                                 parameter.getDeclaringExecutable().getDeclaringClass().getName(),

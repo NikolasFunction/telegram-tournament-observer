@@ -4,7 +4,7 @@ import java.util.Date;
 
 public interface ITournament {
     
-    public long getTournamentId();
+    public long getId();
     
     public Date getTime();
     
